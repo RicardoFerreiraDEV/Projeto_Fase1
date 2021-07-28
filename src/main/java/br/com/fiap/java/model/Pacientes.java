@@ -34,4 +34,5 @@ public class Pacientes {
     private String cpf;
     private String grupoPrioridade;
     private String racaCor;
+
 }
