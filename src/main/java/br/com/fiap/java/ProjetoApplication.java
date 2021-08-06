@@ -33,11 +33,11 @@ public class ProjetoApplication implements CommandLineRunner {
             System.out.println("");
             System.out.println("--- SISTEMA DE CONTROLE DE VACINAS ---");
             System.out.println("");
-            System.out.println("1 - Cadastrar Pacientes");
-            System.out.println("2 - Aplicar Vacina");
+            System.out.println("1 - Pacientes");
+            System.out.println("2 - Vacinas");
             System.out.println("0 - Sair");
             System.out.println("");
-            System.out.println("Digite uma Opção :");
+            System.out.println("Digite uma Opção : ");
 
             int action = scanner.nextInt();
             if(action == 1){

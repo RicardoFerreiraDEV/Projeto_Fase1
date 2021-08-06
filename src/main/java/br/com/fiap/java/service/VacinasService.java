@@ -1,7 +1,6 @@
 package br.com.fiap.java.service;
 
 import br.com.fiap.java.model.Vacinas;
-import br.com.fiap.java.repository.VacinaRepository;
 import br.com.fiap.java.repository.VacinasRepository;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +19,7 @@ public class VacinasService {
     public void inicial(Scanner scanner) {
         while (system) {
             System.out.println("-- APLICAÇÃO DE VACINAS --");
+            System.out.println("");
             System.out.println("1 - Novo");
             System.out.println("2 - Visualizar");
             System.out.println("0 - Sair");
@@ -56,6 +56,8 @@ public class VacinasService {
         Iterable<Vacinas> vacinas = vacinasRepository.findAll();
         vacinas.forEach(vacina -> System.out.println(vacinas));
     }
+
+
 
 }
 

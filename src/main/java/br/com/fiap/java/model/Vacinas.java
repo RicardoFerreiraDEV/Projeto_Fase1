@@ -8,18 +8,28 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@NoArgsConstructor
 @Table(name="vacinas")
 public class Vacinas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVacina;
-    private Long idPontoVacinacao;
-    private Long idPaciente;
     private String nomeVacina;
     private LocalDate vencimento;
     private String lote;
+
+    @ManyToOne
+    private PontosVacinacao pontosVacinacao;
+
+    public Vacinas(String nomeVacina, LocalDate vencimento, String lote, PontosVacinacao pontosVacinacao) {
+        this.nomeVacina = nomeVacina;
+        this.vencimento = vencimento;
+        this.lote = lote;
+        this.pontosVacinacao = pontosVacinacao;
+    }
+
+    public Vacinas() {
+    }
 
     public Long getIdVacina() {
         return idVacina;
@@ -27,22 +37,6 @@ public class Vacinas {
 
     public void setIdVacina(Long idVacina) {
         this.idVacina = idVacina;
-    }
-
-    public Long getIdPontoVacinacao() {
-        return idPontoVacinacao;
-    }
-
-    public void setIdPontoVacinacao(Long idPontoVacinacao) {
-        this.idPontoVacinacao = idPontoVacinacao;
-    }
-
-    public Long getIdPaciente() {
-        return idPaciente;
-    }
-
-    public void setIdPaciente(Long idPaciente) {
-        this.idPaciente = idPaciente;
     }
 
     public String getNomeVacina() {
@@ -73,8 +67,6 @@ public class Vacinas {
     public String toString() {
         return "Vacinas{" +
                 "idVacina=" + idVacina +
-                ", idPontoVacinacao=" + idPontoVacinacao +
-                ", idPaciente=" + idPaciente +
                 ", nomeVacina=" + nomeVacina +
                 ", vencimento=" + vencimento +
                 ", lote='" + lote + '\'' +

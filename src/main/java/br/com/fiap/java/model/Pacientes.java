@@ -1,28 +1,20 @@
 package br.com.fiap.java.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@NoArgsConstructor
 @Table(name = "pacientes")
 public class Pacientes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPacientes;
-    private Long idVacina;
-    private Long idPontoVacinacao;
     private String nome;
-    private LocalDate dataNac;
+    private LocalDate dataNasc;
     private String endereco;
     private String dose;
-    private LocalDate dataVasc;
+    private LocalDate dataVac;
     private String telefone;
     private String nomeMae;
     private String nomePai;
@@ -30,6 +22,28 @@ public class Pacientes {
     private String cpf;
     private String grupoPrioridade;
     private String racaCor;
+
+    @ManyToOne
+    private Vacinas Vacina;
+
+    public Pacientes(String nome, LocalDate dataNasc, String endereco, String dose, LocalDate dataVasc, String telefone, String nomeMae, String nomePai, String sexo, String cpf, String grupoPrioridade, String racaCor, Vacinas vacina) {
+        this.nome = nome;
+        this.dataNasc = dataNasc;
+        this.endereco = endereco;
+        this.dose = dose;
+        this.dataVac = dataVasc;
+        this.telefone = telefone;
+        this.nomeMae = nomeMae;
+        this.nomePai = nomePai;
+        this.sexo = sexo;
+        this.cpf = cpf;
+        this.grupoPrioridade = grupoPrioridade;
+        this.racaCor = racaCor;
+        Vacina = vacina;
+    }
+
+    public Pacientes() {
+    }
 
     public Long getIdPacientes() {
         return idPacientes;
@@ -39,36 +53,18 @@ public class Pacientes {
         this.idPacientes = idPacientes;
     }
 
-    public Long getIdVacina() {
-        return idVacina;
-    }
-
-    public void setIdVacina(Long idVacina) {
-        this.idVacina = idVacina;
-    }
-
-    public Long getIdPontoVacinacao() {
-        return idPontoVacinacao;
-    }
-
-    public void setIdPontoVacinacao(Long idPontoVacinacao) {
-        this.idPontoVacinacao = idPontoVacinacao;
-    }
-
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String nome) { this.nome = nome; }
+
+    public LocalDate getDataNasc() {
+        return dataNasc;
     }
 
-    public LocalDate getDataNac() {
-        return dataNac;
-    }
-
-    public void setDataNac(LocalDate dataNac) {
-        this.dataNac = dataNac;
+    public void setDataNasc(LocalDate dataNasc) {
+        this.dataNasc = dataNasc;
     }
 
     public String getEndereco() {
@@ -88,11 +84,11 @@ public class Pacientes {
     }
 
     public LocalDate getDataVasc() {
-        return dataVasc;
+        return dataVac;
     }
 
     public void setDataVasc(LocalDate dataVasc) {
-        this.dataVasc = dataVasc;
+        this.dataVac = dataVasc;
     }
 
     public String getTelefone() {
@@ -155,13 +151,11 @@ public class Pacientes {
     public String toString() {
         return "Pacientes{" +
                 "idPacientes=" + idPacientes +
-                ", idVacina=" + idVacina +
-                ", idPontoVacinacao=" + idPontoVacinacao +
                 ", nome='" + nome + '\'' +
-                ", dataNac=" + dataNac +
+                ", dataNasc=" + dataNasc +
                 ", endereco='" + endereco + '\'' +
                 ", dose='" + dose + '\'' +
-                ", dataVasc=" + dataVasc +
+                ", dataVasc=" + dataVac +
                 ", telefone='" + telefone + '\'' +
                 ", nomeMae='" + nomeMae + '\'' +
                 ", nomePai='" + nomePai + '\'' +
