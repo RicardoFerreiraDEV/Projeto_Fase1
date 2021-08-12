@@ -11,10 +11,10 @@ public class Pacientes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPacientes;
     private String nome;
-    private LocalDate dataNasc;
+    private String dataNasc;
     private String endereco;
     private String dose;
-    private LocalDate dataVac;
+    private String dataVac;
     private String telefone;
     private String nomeMae;
     private String nomePai;
@@ -26,12 +26,12 @@ public class Pacientes {
     @ManyToOne
     private Vacinas Vacina;
 
-    public Pacientes(String nome, LocalDate dataNasc, String endereco, String dose, LocalDate dataVasc, String telefone, String nomeMae, String nomePai, String sexo, String cpf, String grupoPrioridade, String racaCor, Vacinas vacina) {
+    public Pacientes(String nome, String dataNasc, String endereco, String dose, String dataVac, String telefone, String nomeMae, String nomePai, String sexo, String cpf, String grupoPrioridade, String racaCor, Vacinas vacina) {
         this.nome = nome;
         this.dataNasc = dataNasc;
         this.endereco = endereco;
         this.dose = dose;
-        this.dataVac = dataVasc;
+        this.dataVac = dataVac;
         this.telefone = telefone;
         this.nomeMae = nomeMae;
         this.nomePai = nomePai;
@@ -59,11 +59,11 @@ public class Pacientes {
 
     public void setNome(String nome) { this.nome = nome; }
 
-    public LocalDate getDataNasc() {
+    public String getDataNasc() {
         return dataNasc;
     }
 
-    public void setDataNasc(LocalDate dataNasc) {
+    public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
 
@@ -83,12 +83,12 @@ public class Pacientes {
         this.dose = dose;
     }
 
-    public LocalDate getDataVasc() {
+    public String getDataVac() {
         return dataVac;
     }
 
-    public void setDataVasc(LocalDate dataVasc) {
-        this.dataVac = dataVasc;
+    public void setDataVasc(String dataVac) {
+        this.dataVac = dataVac;
     }
 
     public String getTelefone() {
@@ -155,7 +155,7 @@ public class Pacientes {
                 ", dataNasc=" + dataNasc +
                 ", endereco='" + endereco + '\'' +
                 ", dose='" + dose + '\'' +
-                ", dataVasc=" + dataVac +
+                ", dataVac=" + dataVac +
                 ", telefone='" + telefone + '\'' +
                 ", nomeMae='" + nomeMae + '\'' +
                 ", nomePai='" + nomePai + '\'' +

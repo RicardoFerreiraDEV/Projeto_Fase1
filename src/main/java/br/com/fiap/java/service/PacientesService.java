@@ -60,7 +60,7 @@ public class PacientesService {
         System.out.println("Nome do Paciente : ");
         String nome = scanner.next();
         System.out.println("Data Nascimento : ");
-        LocalDate dataNasc = LocalDate.parse(scanner.next());
+        String dataNasc = scanner.next();
         System.out.println("Endereço : ");
         String endereco = scanner.next();
         System.out.println("Dose : ");
