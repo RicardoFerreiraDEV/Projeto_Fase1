@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="vacinas")
+@Table(name="tb_vacinas")
 public class Vacinas {
 
     @Id

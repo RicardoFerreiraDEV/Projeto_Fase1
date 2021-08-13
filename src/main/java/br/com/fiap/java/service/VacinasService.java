@@ -1,9 +1,12 @@
 package br.com.fiap.java.service;
 
+import br.com.fiap.java.model.Pacientes;
 import br.com.fiap.java.model.Vacinas;
 import br.com.fiap.java.repository.VacinasRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Scanner;
 
 @Service
@@ -16,48 +19,50 @@ public class VacinasService {
         this.vacinasRepository = vacinasRepository;
     }
 
-    public void inicial(Scanner scanner) {
-        while (system) {
-            System.out.println("-- APLICAÇÃO DE VACINAS --");
-            System.out.println("");
-            System.out.println("1 - Novo");
-            System.out.println("2 - Visualizar");
-            System.out.println("0 - Sair");
-            System.out.println("");
-            System.out.println("Escolha a Opção : ");
-            System.out.println("");
+    //////////////////////////////////////////////////////////////////
 
-            int action = scanner.nextInt();
-            switch (action) {
-                case 1:
-                    salvar(scanner);
-                    break;
-                case 2:
-                    visualizar(scanner);
-                    break;
-                default:
-                    system = false;
-                    break;
-            }
+    public List<Vacinas> visualizarTodos() {
+        return vacinasRepository.findAll();
+    }
+
+    public Vacinas visualizar(Long vacinaId) {
+        Vacinas vacinaRecuperada = vacinasRepository.findById(vacinaId)
+                .orElseThrow(() -> new IllegalStateException("Vacina com Id" + vacinaId + "não existe"));
+        return vacinaRecuperada;
+    }
+
+    public void salvar(Vacinas vacina) {
+        boolean isPresent = vacinasRepository.findById(vacina.getIdVacina()).isPresent();
+
+        if(isPresent) {
+            throw new IllegalStateException("Vacina ja cadastrada");
         }
-    }
 
-    private void salvar(Scanner scanner) {
-        System.out.println("Código do Paciente : ");
-        String nomeVacina = scanner.next();
-        Vacinas vacina = new Vacinas();
-        vacina.setNomeVacina(nomeVacina);
         vacinasRepository.save(vacina);
-        System.out.println("Paciente Vacinado com Sucesso!");
-        System.out.println("");
     }
 
-    private void visualizar(Scanner scanner) {
-        Iterable<Vacinas> vacinas = vacinasRepository.findAll();
-        vacinas.forEach(vacina -> System.out.println(vacinas));
+    public void deletar(Long vacinaId) {
+        boolean exists = vacinasRepository.existsById(vacinaId);
+
+        if(!exists) {
+            throw new IllegalStateException("Vacina com Id" + vacinaId + "não existe");
+        }
+
+        vacinasRepository.deleteById(vacinaId);
     }
 
+    @Transactional
+    public void atualizarVacina(Vacinas vacina) {
+        Vacinas vacinaRecuperada = vacinasRepository.findById(vacina.getIdVacina())
+                .orElseThrow(() -> new IllegalStateException("Vacina com Id" + vacina.getIdVacina() + "não existe"));
 
+        //verificar se o campo não ta zuado;
+        //validar email
+        //validar cpf
+        vacinaRecuperada.setNomeVacina(vacina.getNomeVacina());
+        vacinaRecuperada.setLote(vacina.getLote());
+        vacinaRecuperada.setVencimento(vacina.getVencimento());
+    }
 
 }
 

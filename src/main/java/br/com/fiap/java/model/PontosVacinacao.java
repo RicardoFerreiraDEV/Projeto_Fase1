@@ -1,5 +1,6 @@
 package br.com.fiap.java.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,7 +9,8 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-@Table(name = "PontosVacninas")
+@AllArgsConstructor
+@Table(name = "tb_pontosVacinacao")
 public class PontosVacinacao {
 
     @Id
